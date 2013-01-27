@@ -1,0 +1,75 @@
+/*
+    The Rooms
+    by John *Seg* Seggerson
+    http://segonmedia.com/
+    
+    Produced for Global Game Jam 2013 in San Francisco.
+*/
+
+body{
+  font-family:Verdana,sans-serif;
+  background-color:black;
+  color:white;
+  font-size:12pt;
+}
+p {
+  padding:0px;
+  margin:0px;
+}
+a {
+  color:silver;
+}
+
+/* Room Colors */
+.room_white {
+  background-color:white;
+  color:black;
+}
+  .room_white a {
+    color:black;
+  }
+.room_teal {
+  background-color:teal;
+  color:white;
+}
+.room_purple {
+  background-color:purple;
+  color:white;
+}
+.room_olive {
+  background-color:olive;
+  color:white;
+}
+.room_gray {
+  background-color:gray;
+  color:black;
+}
+.room_red {
+  background-color:red;
+  color:white;
+}
+
+/* Areas */
+#title {
+  text-align:center;
+}
+#roomArea {
+  border-radius: 15px 10px;
+  padding:15px;
+  margin:0% 15%;
+  border:2px solid silver;
+  font-size:14pt;
+}
+#roomActions {
+  
+}
+  #roomActions ul {
+    list-style-type:circle;
+    font-variant:small-caps;
+  }
+
+#footer {
+  margin-top:20px;
+  font-size:10pt;
+  text-align:center;
+}
