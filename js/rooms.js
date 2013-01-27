@@ -630,9 +630,28 @@ function roomEval( targetRoom ) {
         // RED ROOM STAGE START
         case "RED_INIT":
             color = "RED";
-            desc = "RED TIME!";
-            actions = [ "Don't know yet" ];
-            hrefs = [ "" ];
+            desc = "As you walk to the middle of the room, the entire room turns to a <b>RED</b> color and the sound you've kept hearing gets louder and louder.<br/><br/><em>THUMP THUMP. THUMP THUMP.</em><br/><br/>Clearly this doesn't bode well for you.";
+            actions = [ "BODE as well as you can." ];
+            hrefs = [ "RED_001" ];
+            break;
+            
+        case "RED_001":
+            color = "RED";
+            desc = "A hole in the floor opens up. Piering into it, all you see is a dark black space. There is nothing remarkable about it, beside the only excape from this place. Hopefully.";
+            actions = [ "WAIT for something else to happen.","GO INTO the HOLE."];
+            hrefs = [ "RED_WAIT" , "RED_GO" ];
+            break;
+            
+        case "RED_WAIT":
+            color = "RED";
+            desc = "Nothing much happens besdies the red lights, the hole, and the louder and louder noise of what apears to be a heart beat.<br/><br/>You know, most of the time in video games when there's a hole in the bottom of a room, it's usually OK to jump in.";
+            actions = [ "GO INTO the HOLE."];
+            hrefs = [ "RED_GO" ];
+            break;
+            
+        case "RED_GO":
+            // We're going to the end of the Internet.
+            window.location = "http://www.endoftheinternet.com/";
             break;
         
         // Default catch for when someone forgot to make the room state...
