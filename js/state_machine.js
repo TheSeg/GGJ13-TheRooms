@@ -8,4 +8,9 @@
 
 var state = {
     'WHITE_000_002_yelled':0,
+    'ROOM_CLEAR_TEAL':false,
+    'ROOM_CLEAR_PURPLE':false,
+    'ROOM_CLEAR_OLIVE':false,
+    'ROOM_CLEAR_GRAY':false,
+    'ROOM_CLEAR_RED':false,
 };
