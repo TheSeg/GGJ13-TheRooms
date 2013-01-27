@@ -169,31 +169,267 @@ function roomEval( targetRoom ) {
             actions = tempReturn[1];
             hrefs = tempReturn[2];
             links = tempReturn[3];
-            
             break;
         
+        case "WHITE_EAST_000":
+            color = 'white';
+            tempReturn = WhiteRoom_DoorApproch( "PURPLE" );
+            desc = tempReturn[0];
+            actions = tempReturn[1];
+            hrefs = tempReturn[2];
+            links = tempReturn[3];
+            break;
+        
+        case "WHITE_SOUTH_000":
+            color = 'white';
+            tempReturn = WhiteRoom_DoorApproch( "OLIVE" );
+            desc = tempReturn[0];
+            actions = tempReturn[1];
+            hrefs = tempReturn[2];
+            links = tempReturn[3];
+            break;
+        
+        case "WHITE_NORTH_000":
+            color = 'white';
+            tempReturn = WhiteRoom_DoorApproch( "GRAY" );
+            desc = tempReturn[0];
+            actions = tempReturn[1];
+            hrefs = tempReturn[2];
+            links = tempReturn[3];
+            break;
+        
+        case "WHITE_WEST_FROM_TEAL":
+            color = 'white';
+            desc = "As you touch the door, the room changes from TEAL back to white.<br/><br/>";
+            
+            if ( state['ROOM_CLEAR_TEAL'] ) {
+                desc = desc + "You notice the door outline turning from <b>WHITE</b> to <b>RED</b>.";
+            }
+            
+            actions = ["OBSERVE the situation."];
+            hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            break;
+            
+        case "WHITE_WEST_FROM_PURPLE":
+            color = 'white';
+            desc = "As you touch the door, the room changes from PURPLE back to white.<br/><br/>";
+            
+            if ( state['ROOM_CLEAR_TEAL'] ) {
+                desc = desc + "You notice the door outline turning from <b>WHITE</b> to <b>RED</b>.";
+            }
+            
+            actions = ["OBSERVE the situation."];
+            hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            break;
+            
+        case "WHITE_WEST_FROM_PURPLE":
+            color = 'white';
+            desc = "As you touch the door, the room changes from PURPLE back to white.<br/><br/>";
+            
+            if ( state['ROOM_CLEAR_TEAL'] ) {
+                desc = desc + "You notice the door outline turning from <b>WHITE</b> to <b>RED</b>.";
+            }
+            
+            actions = ["OBSERVE the situation."];
+            hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            break;
+            
+        case "WHITE_WEST_FROM_GRAY":
+            color = 'white';
+            desc = "As you touch the door, the room changes from GRAY back to WHITE.<br/><br/>";
+            
+            if ( state['ROOM_CLEAR_GRAY'] ) {
+                desc = desc + "You notice the door outline turning from <b>WHITE</b> to <b>RED</b>.";
+            }
+            
+            actions = ["OBSERVE the situation."];
+            hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            break;
+            
+        /*
+            TEAL ROOM SECTION
+        */
         case "TEAL_ENTRY":
             state['TEAL_FIRSTVIST'] = true;
             
             color = 'teal'
+            
+            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>TEAL</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedistal in the middle of the room. ";
+            
+            actions = ["APPROCH the pedistal."];
+            hrefs = ['TEAL_DEFAULT'];
+            links = [];
+            break;
+            
+        case "TEAL_DEFAULT":
+            color = 'teal';
+            desc = "";
             actions = [];
             hrefs = [];
             links = [];
             
-            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>TEAL</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedistal in the middle of the room. ";
-
-            if ( state['ROOM_CLEAR_TEAL'] == false ) {
-                // Room is finished
-                desc = desc + "You see a <b>TEAL</b> cube upon the pedistal. There's no reason to remove it.";
-            } else if ( state['INV_BLOCK_TEAL'] ) {
-                // Player has a TEAL block
+            switch( state['TEAL_PEDISTAL'].toUpperCase() ) {
+                case "TEAL":
+                    desc = desc + "You see a <b>TEAL</b> cube upon the pedistal. There's no reason to remove it.";
+                    break;
+                case "PURPLE":
+                    desc = desc + "You see a <b>PURPLE</b> cube upon the pedistal. It looks inviting enough to pick it up.";
+                    actions.push("TAKE PURPLE BLOCK.");
+                    hrefs.push("TEAL_ACTION_PICKUP_PURPLE");
+                    break;
+                default:
+                    // Blocks that can be placed.
+                    desc = desc + "You see an empty pedistal, waiting for a block to be placed inside of it.";
+                    if ( state['INV_BLOCK_TEAL'] ) {
+                        // Can place the block on the pedistal correctly
+                        actions.push("PLACE TEAL BLOCK on PEDISTAL.");
+                        hrefs.push("TEAL_ACTION_PLACE_TEAL");
+                    }
+                    if ( state['INV_BLOCK_PURPLE'] ) {
+                        // Can place the block on the pedistal correctly
+                        actions.push("PLACE PURPLE BLOCK on PEDISTAL.");
+                        hrefs.push("TEAL_ACTION_PLACE_OTHER");
+                    }
+                    if ( state['INV_BLOCK_OLIVE'] ) {
+                        // Can place the block on the pedistal correctly
+                        actions.push("PLACE OLIVE BLOCK on PEDISTAL.");
+                        hrefs.push("TEAL_ACTION_PLACE_OTHER");
+                    }
+                    if ( state['INV_BLOCK_GRAY'] ) {
+                        // Can place the block on the pedistal correctly
+                        actions.push("PLACE GRAY BLOCK on PEDISTAL.");
+                        hrefs.push("TEAL_ACTION_PLACE_OTHER");
+                    }
+                    
+                    break;
             }
             
             actions.push("TOUCH the door outline.");
-            hrefs.push("WHITE_WEST_001")
+            hrefs.push("WHITE_WEST_FROM_TEAL")
             
             break;
             
+        case "TEAL_ACTION_PICKUP_PURPLE":
+            // STATES
+            state['INV_BLOCK_PURPLE'] = true;
+            state['TEAL_PEDISTAL'] = "none";
+            
+            color = 'teal';
+            desc = "You pick up the purple block from the pedistal and place it in your bag of holding. Which for right now is just your hands and arms.";
+            actions = [ "Re-observe the room."];
+            hrefs = [ "TEAL_DEFAULT" ];
+            break;
+            
+        case "TEAL_ACTION_PLACE_OTHER":
+            color = "teal";
+            desc = "You place the block on the pedistal. Despite the block being perfectly square and the same size as all the rest of the blocks, you still can't place it into the pedistal. Clearly this pedistal takes color into account of physical space... somehow.";
+            actions = [ "Re-observe the room."];
+            hrefs = [ "TEAL_DEFAULT" ];
+            break;
+        
+        case "TEAL_ACTION_PLACE_TEAL":
+            //Actions
+            state['INV_BLOCK_TEAL'] = false;
+            state['TEAL_PEDISTAL'] = "TEAL";
+            
+            color = "teal";
+            desc = "You place the block on the pedistal. It fists perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
+            actions = [ "Re-observe the room."];
+            hrefs = [ "TEAL_DEFAULT" ];
+            break;
+        
+        /*
+            PURPLE ROOM SECTION
+            with TEAL block to start.
+        */
+        case "PURPLE_ENTRY":
+            state['PURPLE_FIRSTVIST'] = true;
+            
+            color = 'PURPLE'
+            
+            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>PURPLE</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedistal in the middle of the room. ";
+            
+            actions = ["APPROCH the pedistal."];
+            hrefs = ['PURPLE_DEFAULT'];
+            links = [];
+            break;
+            
+        case "PURPLE_DEFAULT":
+            color = 'PURPLE';
+            desc = "";
+            actions = [];
+            hrefs = [];
+            links = [];
+            
+            switch( state['PURPLE_PEDISTAL'].toUpperCase() ) {
+                case "PURPLE":
+                    desc = desc + "You see a <b>PURPLE</b> cube upon the pedistal. There's no reason to remove it.";
+                    break;
+                case "TEAL":
+                    desc = desc + "You see a <b>TEAL</b> cube upon the pedistal. It looks inviting enough to pick it up.";
+                    actions.push("TAKE TEAL BLOCK.");
+                    hrefs.push("PURPLE_ACTION_PICKUP_TEAL");
+                    break;
+                default:
+                    // Blocks that can be placed.
+                    desc = desc + "You see an empty pedistal, waiting for a block to be placed inside of it.";
+                    if ( state['INV_BLOCK_TEAL'] ) {
+                        actions.push("PLACE TEAL BLOCK on PEDISTAL.");
+                        hrefs.push("PURPLE_ACTION_PLACE_OTHER");
+                    }
+                    if ( state['INV_BLOCK_PURPLE'] ) {
+                        actions.push("PLACE PURPLE BLOCK on PEDISTAL.");
+                        hrefs.push("PURPLE_ACTION_PLACE_PURPLE");
+                    }
+                    if ( state['INV_BLOCK_OLIVE'] ) {
+                        actions.push("PLACE OLIVE BLOCK on PEDISTAL.");
+                        hrefs.push("PURPLE_ACTION_PLACE_OTHER");
+                    }
+                    if ( state['INV_BLOCK_GRAY'] ) {
+                        actions.push("PLACE GRAY BLOCK on PEDISTAL.");
+                        hrefs.push("PURPLE_ACTION_PLACE_OTHER");
+                    }
+                    
+                    break;
+            }
+            
+            actions.push("TOUCH the door outline.");
+            hrefs.push("WHITE_WEST_FROM_PURPLE")
+            
+            break;
+            
+        case "PURPLE_ACTION_PICKUP_TEAL":
+            // STATES
+            state['INV_BLOCK_TEAL'] = true;
+            state['PURPLE_PEDISTAL'] = "none";
+            
+            color = 'PURPLE';
+            desc = "You pick up the TEAL block from the pedistal and place it in your bag of holding. Which for right now is just your hands and arms.";
+            actions = [ "Re-observe the room."];
+            hrefs = [ "PURPLE_DEFAULT" ];
+            break;
+            
+        case "PURPLE_ACTION_PLACE_OTHER":
+            color = "PURPLE";
+            desc = "You place the block on the pedistal. Despite the block being perfectly square and the same size as all the rest of the blocks, you still can't place it into the pedistal. Clearly this pedistal takes color into account of physical space... somehow.";
+            actions = [ "Re-observe the room."];
+            hrefs = [ "PURPLE_DEFAULT" ];
+            break;
+        
+        case "PURPLE_ACTION_PLACE_PURPLE":
+            //Actions
+            state['INV_BLOCK_PURPLE'] = false;
+            state['PURPLE_PEDISTAL'] = "PURPLE";
+            
+            color = "PURPLE";
+            desc = "You place the block on the pedistal. It fists perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
+            actions = [ "Re-observe the room."];
+            hrefs = [ "PURPLE_DEFAULT" ];
+            break;
+        
+        // END PURPLE ROOM
+        
+        
         // Default catch for when someone forgot to make the room state...
         default:
             color = null;
@@ -221,7 +457,7 @@ function WhiteRoom_DoorApproch( TargetDoorColor ) {
     var links;
 
     // If The room is clear, show that process.
-    if ( state['ROOM_CLEAR_'+TargetDoorColor.toUpperCase()] ) {
+    if ( state[ TargetDoorColor.toUpperCase()+'_PEDISTAL' ] == TargetDoorColor.toUpperCase() ) {
         // Room is cleared. Show the 'locked' state.
         desc = "You walk to the wall to what was a "+TargetDoorColor.toUpperCase()+" color outline, but is now simply RED.<br/><br/>There is a slightly louder hum of in rhythm eminiating from the door.";
         // Actions are the same acorss.
@@ -266,22 +502,22 @@ function WHITE_MIDDLE_DEFAULT() {
     // Check and returns which doors are active.
     desc = "You are in the center of the room with four outlines of doors around the room.<br/><br/>";
     
-    if ( state['ROOM_CLEAR_TEAL'] ) {
+    if ( state[ 'TEAL_PEDISTAL' ] == "TEAL" ) {
         desc = desc + "To the <b>WEST</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>WEST</b>, you see a <b>TEAL</b> outline of a door.<br/>";
     }
-    if ( state['ROOM_CLEAR_PURPLE'] ) {
+    if ( state[ 'PURPLE_PEDISTAL' ] == "PURPLE" ) {
         desc = desc + "To the <b>EAST</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>EAST</b>, you see a <b>PURPLE</b> outline of a door.<br/>";
     }
-    if ( state['ROOM_CLEAR_OLIVE'] ) {
+    if ( state[ 'OLIVE_PEDISTAL' ] == "OLIVE" ) {
         desc = desc + "To the <b>SOUTH</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>SOUTH</b>, you see a <b>OLIVE</b> outline of a door.<br/>";
     }
-    if ( state['ROOM_CLEAR_GRAY'] ) {
+    if ( state[ 'GRAY_PEDISTAL' ] == "GRAY" ) {
         desc = desc + "To the <b>NORTH</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>NORTH</b>, you see a <b>GRAY</b> outline of a door.<br/>";

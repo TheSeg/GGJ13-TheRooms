@@ -34,3 +34,7 @@ var state = {
     'INV_BLOCK_GRAY':false,
     
 };
+
+function getState() {
+    console.log( state );
+}
