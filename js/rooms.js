@@ -207,7 +207,11 @@ function roomEval( targetRoom ) {
             }
             
             actions = ["OBSERVE the situation."];
-            hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            if ( RedRoomCheck() ) {
+                hrefs = ['RED_INIT'];
+            } else {
+                hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            }
             break;
             
         case "WHITE_WEST_FROM_PURPLE":
@@ -219,7 +223,11 @@ function roomEval( targetRoom ) {
             }
             
             actions = ["OBSERVE the situation."];
-            hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            if ( RedRoomCheck() ) {
+                hrefs = ['RED_INIT'];
+            } else {
+                hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            }
             break;
             
         case "WHITE_WEST_FROM_OLIVE":
@@ -231,7 +239,11 @@ function roomEval( targetRoom ) {
             }
             
             actions = ["OBSERVE the situation."];
-            hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            if ( RedRoomCheck() ) {
+                hrefs = ['RED_INIT'];
+            } else {
+                hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            }
             break;
             
         case "WHITE_WEST_FROM_GRAY":
@@ -243,7 +255,11 @@ function roomEval( targetRoom ) {
             }
             
             actions = ["OBSERVE the situation."];
-            hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            if ( RedRoomCheck() ) {
+                hrefs = ['RED_INIT'];
+            } else {
+                hrefs = ["WHITE_MIDDLE_DEFAULT"];
+            }
             break;
             
         /*
@@ -611,6 +627,13 @@ function roomEval( targetRoom ) {
         
         // END OLIVE ROOM
         
+        // RED ROOM STAGE START
+        case "RED_INIT":
+            color = "RED";
+            desc = "RED TIME!";
+            actions = [ "Don't know yet" ];
+            hrefs = [ "" ];
+            break;
         
         // Default catch for when someone forgot to make the room state...
         default:
@@ -684,22 +707,22 @@ function WHITE_MIDDLE_DEFAULT() {
     // Check and returns which doors are active.
     desc = "You are in the center of the room with four outlines of doors around the room.<br/><br/>";
     
-    if ( state[ 'TEAL_PEDISTAL' ] == "TEAL" ) {
+    if ( state[ 'TEAL_PEDISTAL' ].toUpperCase() == "TEAL" ) {
         desc = desc + "To the <b>WEST</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>WEST</b>, you see a <b>TEAL</b> outline of a door.<br/>";
     }
-    if ( state[ 'PURPLE_PEDISTAL' ] == "PURPLE" ) {
+    if ( state[ 'PURPLE_PEDISTAL' ].toUpperCase() == "PURPLE" ) {
         desc = desc + "To the <b>EAST</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>EAST</b>, you see a <b>PURPLE</b> outline of a door.<br/>";
     }
-    if ( state[ 'OLIVE_PEDISTAL' ] == "OLIVE" ) {
+    if ( state[ 'OLIVE_PEDISTAL' ].toUpperCase() == "OLIVE" ) {
         desc = desc + "To the <b>SOUTH</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>SOUTH</b>, you see a <b>OLIVE</b> outline of a door.<br/>";
     }
-    if ( state[ 'GRAY_PEDISTAL' ] == "GRAY" ) {
+    if ( state[ 'GRAY_PEDISTAL' ].toUpperCase() == "GRAY" ) {
         desc = desc + "To the <b>NORTH</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>NORTH</b>, you see a <b>GRAY</b> outline of a door.<br/>";
@@ -707,3 +730,17 @@ function WHITE_MIDDLE_DEFAULT() {
     
     return desc;
 }
+
+function RedRoomCheck() {
+    if (
+        state['TEAL_PEDISTAL'].toUpperCase() == 'TEAL' &&
+        state['PURPLE_PEDISTAL'].toUpperCase() == 'PURPLE' &&
+        state['OLIVE_PEDISTAL'].toUpperCase() == 'OLIVE' &&
+        state['GRAY_PEDISTAL'].toUpperCase() == 'GRAY'
+    ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+// EOL
