@@ -6,6 +6,6 @@
     Produced for Global Game Jam 2013 in San Francisco.
 */
 
-var states = {
-    
+var state = {
+    'WHITE_000_002_yelled':0,
 };

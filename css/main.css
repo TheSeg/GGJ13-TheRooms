@@ -32,22 +32,37 @@ a {
   background-color:teal;
   color:white;
 }
+  .room_teal a {
+    color:white;
+  }
 .room_purple {
   background-color:purple;
   color:white;
 }
+  .room_purple a {
+    color:white;
+  }
 .room_olive {
   background-color:olive;
   color:white;
 }
+  .room_olive a {
+    color:black;
+  }
 .room_gray {
   background-color:gray;
   color:black;
 }
+  .room_gray a {
+    color:black;
+  }
 .room_red {
   background-color:red;
   color:white;
 }
+  .room_red a {
+    color:black;
+  }
 
 /* Areas */
 #title {
