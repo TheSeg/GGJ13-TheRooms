@@ -7,12 +7,6 @@
 */
 
 var state = {
-    'ROOM_CLEAR_TEAL':false,
-    'ROOM_CLEAR_PURPLE':false,
-    'ROOM_CLEAR_OLIVE':false,
-    'ROOM_CLEAR_GRAY':false,
-    'ROOM_CLEAR_RED':false,
-    
     'WHITE_000_002_yelled':0,
     'WHITE_ANY_DOOR_VISITED':false,
     
