@@ -11,16 +11,16 @@ var init_state = {
     'WHITE_ANY_DOOR_VISITED':false,
     
     'TEAL_FIRSTVIST':false,
-    'TEAL_PEDISTAL':'PURPLE',
+    'TEAL_PEDESTAL':'PURPLE',
     
     'PURPLE_FIRSTVIST':false,
-    'PURPLE_PEDISTAL':'TEAL',
+    'PURPLE_PEDESTAL':'TEAL',
     
     'OLIVE_FIRSTVIST':false,
-    'OLIVE_PEDISTAL':'GRAY',
+    'OLIVE_PEDESTAL':'GRAY',
     
     'GRAY_FIRSTVIST':false,
-    'GRAY_PEDISTAL':'OLIVE',
+    'GRAY_PEDESTAL':'OLIVE',
     
     'INV_BLOCK_TEAL':false,
     'INV_BLOCK_PURPLE':false,

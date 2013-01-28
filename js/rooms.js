@@ -209,7 +209,7 @@ function roomEval( targetRoom ) {
             color = 'white';
             desc = "As you touch the door, the room changes from TEAL back to white.<br/><br/>";
             
-            if ( state['TEAL_PEDISTAL'].toUpperCase() == "TEAL" ) {
+            if ( state['TEAL_PEDESTAL'].toUpperCase() == "TEAL" ) {
                 desc = desc + "You notice the door outline turning from <b>WHITE</b> to <b>RED</b>.";
             }
             
@@ -225,7 +225,7 @@ function roomEval( targetRoom ) {
             color = 'white';
             desc = "As you touch the door, the room changes from PURPLE back to white.<br/><br/>";
             
-            if ( state['PURPLE_PEDISTAL'].toUpperCase() == "PURPLE" ) {
+            if ( state['PURPLE_PEDESTAL'].toUpperCase() == "PURPLE" ) {
                 desc = desc + "You notice the door outline turning from <b>WHITE</b> to <b>RED</b>.";
             }
             
@@ -241,7 +241,7 @@ function roomEval( targetRoom ) {
             color = 'white';
             desc = "As you touch the door, the room changes from OLIVE back to white.<br/><br/>";
             
-            if ( state['OLIVE_PEDISTAL'].toUpperCase() == "OLIVE" ) {
+            if ( state['OLIVE_PEDESTAL'].toUpperCase() == "OLIVE" ) {
                 desc = desc + "You notice the door outline turning from <b>WHITE</b> to <b>RED</b>.";
             }
             
@@ -257,7 +257,7 @@ function roomEval( targetRoom ) {
             color = 'white';
             desc = "As you touch the door, the room changes from GRAY back to WHITE.<br/><br/>";
             
-            if ( state['GRAY_PEDISTAL'].toUpperCase() == "GRAY" ) {
+            if ( state['GRAY_PEDESTAL'].toUpperCase() == "GRAY" ) {
                 desc = desc + "You notice the door outline turning from <b>WHITE</b> to <b>RED</b>.";
             }
             
@@ -277,9 +277,9 @@ function roomEval( targetRoom ) {
             
             color = 'teal'
             
-            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>TEAL</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedistal in the middle of the room. ";
+            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>TEAL</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedestal in the middle of the room. ";
             
-            actions = ["APPROCH the pedistal."];
+            actions = ["APPROCH the pedestal."];
             hrefs = ['TEAL_DEFAULT'];
             links = [];
             break;
@@ -291,36 +291,36 @@ function roomEval( targetRoom ) {
             hrefs = [];
             links = [];
             
-            switch( state['TEAL_PEDISTAL'].toUpperCase() ) {
+            switch( state['TEAL_PEDESTAL'].toUpperCase() ) {
                 case "TEAL":
-                    desc = desc + "You see a <b>TEAL</b> cube upon the pedistal. There's no reason to remove it.";
+                    desc = desc + "You see a <b>TEAL</b> cube upon the pedestal. There's no reason to remove it.";
                     break;
                 case "PURPLE":
-                    desc = desc + "You see a <b>PURPLE</b> cube upon the pedistal. It looks inviting enough to pick it up.";
+                    desc = desc + "You see a <b>PURPLE</b> cube upon the pedestal. It looks inviting enough to pick it up.";
                     actions.push("TAKE PURPLE BLOCK.");
                     hrefs.push("TEAL_ACTION_PICKUP_PURPLE");
                     break;
                 default:
                     // Blocks that can be placed.
-                    desc = desc + "You see an empty pedistal, waiting for a block to be placed inside of it.";
+                    desc = desc + "You see an empty pedestal, waiting for a block to be placed inside of it.";
                     if ( state['INV_BLOCK_TEAL'] ) {
-                        // Can place the block on the pedistal correctly
-                        actions.push("PLACE TEAL BLOCK on PEDISTAL.");
+                        // Can place the block on the pedestal correctly
+                        actions.push("PLACE TEAL BLOCK on PEDESTAL.");
                         hrefs.push("TEAL_ACTION_PLACE_TEAL");
                     }
                     if ( state['INV_BLOCK_PURPLE'] ) {
-                        // Can place the block on the pedistal correctly
-                        actions.push("PLACE PURPLE BLOCK on PEDISTAL.");
+                        // Can place the block on the pedestal correctly
+                        actions.push("PLACE PURPLE BLOCK on PEDESTAL.");
                         hrefs.push("TEAL_ACTION_PLACE_OTHER");
                     }
                     if ( state['INV_BLOCK_OLIVE'] ) {
-                        // Can place the block on the pedistal correctly
-                        actions.push("PLACE OLIVE BLOCK on PEDISTAL.");
+                        // Can place the block on the pedestal correctly
+                        actions.push("PLACE OLIVE BLOCK on PEDESTAL.");
                         hrefs.push("TEAL_ACTION_PLACE_OTHER");
                     }
                     if ( state['INV_BLOCK_GRAY'] ) {
-                        // Can place the block on the pedistal correctly
-                        actions.push("PLACE GRAY BLOCK on PEDISTAL.");
+                        // Can place the block on the pedestal correctly
+                        actions.push("PLACE GRAY BLOCK on PEDESTAL.");
                         hrefs.push("TEAL_ACTION_PLACE_OTHER");
                     }
                     
@@ -335,17 +335,17 @@ function roomEval( targetRoom ) {
         case "TEAL_ACTION_PICKUP_PURPLE":
             // STATES
             state['INV_BLOCK_PURPLE'] = true;
-            state['TEAL_PEDISTAL'] = "none";
+            state['TEAL_PEDESTAL'] = "none";
             
             color = 'teal';
-            desc = "You pick up the purple block from the pedistal and place it in your bag of holding. Which for right now is just your hands and arms.";
+            desc = "You pick up the purple block from the pedestal and place it in your bag of holding. Which for right now is just your hands and arms.";
             actions = [ "Re-observe the room."];
             hrefs = [ "TEAL_DEFAULT" ];
             break;
             
         case "TEAL_ACTION_PLACE_OTHER":
             color = "teal";
-            desc = "You place the block on the pedistal. Despite the block being perfectly square and the same size as all the rest of the blocks, you still can't place it into the pedistal. Clearly this pedistal takes color into account of physical space... somehow.";
+            desc = "You place the block on the pedestal. Despite the block being perfectly square and the same size as all the rest of the blocks, you still can't place it into the pedestal. Clearly this pedestal takes color into account of physical space... somehow.";
             actions = [ "Re-observe the room."];
             hrefs = [ "TEAL_DEFAULT" ];
             break;
@@ -353,10 +353,10 @@ function roomEval( targetRoom ) {
         case "TEAL_ACTION_PLACE_TEAL":
             //Actions
             state['INV_BLOCK_TEAL'] = false;
-            state['TEAL_PEDISTAL'] = "TEAL";
+            state['TEAL_PEDESTAL'] = "TEAL";
             
             color = "teal";
-            desc = "You place the block on the pedistal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
+            desc = "You place the block on the pedestal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
             actions = [ "Re-observe the room."];
             hrefs = [ "TEAL_DEFAULT" ];
             break;
@@ -370,9 +370,9 @@ function roomEval( targetRoom ) {
             
             color = 'PURPLE'
             
-            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>PURPLE</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedistal in the middle of the room. ";
+            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>PURPLE</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedestal in the middle of the room. ";
             
-            actions = ["APPROCH the pedistal."];
+            actions = ["APPROCH the pedestal."];
             hrefs = ['PURPLE_DEFAULT'];
             links = [];
             break;
@@ -384,32 +384,32 @@ function roomEval( targetRoom ) {
             hrefs = [];
             links = [];
             
-            switch( state['PURPLE_PEDISTAL'].toUpperCase() ) {
+            switch( state['PURPLE_PEDESTAL'].toUpperCase() ) {
                 case "PURPLE":
-                    desc = desc + "You see a <b>PURPLE</b> cube upon the pedistal. There's no reason to remove it.";
+                    desc = desc + "You see a <b>PURPLE</b> cube upon the pedestal. There's no reason to remove it.";
                     break;
                 case "TEAL":
-                    desc = desc + "You see a <b>TEAL</b> cube upon the pedistal. It looks inviting enough to pick it up.";
+                    desc = desc + "You see a <b>TEAL</b> cube upon the pedestal. It looks inviting enough to pick it up.";
                     actions.push("TAKE TEAL BLOCK.");
                     hrefs.push("PURPLE_ACTION_PICKUP_TEAL");
                     break;
                 default:
                     // Blocks that can be placed.
-                    desc = desc + "You see an empty pedistal, waiting for a block to be placed inside of it.";
+                    desc = desc + "You see an empty pedestal, waiting for a block to be placed inside of it.";
                     if ( state['INV_BLOCK_TEAL'] ) {
-                        actions.push("PLACE TEAL BLOCK on PEDISTAL.");
+                        actions.push("PLACE TEAL BLOCK on PEDESTAL.");
                         hrefs.push("PURPLE_ACTION_PLACE_OTHER");
                     }
                     if ( state['INV_BLOCK_PURPLE'] ) {
-                        actions.push("PLACE PURPLE BLOCK on PEDISTAL.");
+                        actions.push("PLACE PURPLE BLOCK on PEDESTAL.");
                         hrefs.push("PURPLE_ACTION_PLACE_PURPLE");
                     }
                     if ( state['INV_BLOCK_OLIVE'] ) {
-                        actions.push("PLACE OLIVE BLOCK on PEDISTAL.");
+                        actions.push("PLACE OLIVE BLOCK on PEDESTAL.");
                         hrefs.push("PURPLE_ACTION_PLACE_OTHER");
                     }
                     if ( state['INV_BLOCK_GRAY'] ) {
-                        actions.push("PLACE GRAY BLOCK on PEDISTAL.");
+                        actions.push("PLACE GRAY BLOCK on PEDESTAL.");
                         hrefs.push("PURPLE_ACTION_PLACE_OTHER");
                     }
                     
@@ -424,17 +424,17 @@ function roomEval( targetRoom ) {
         case "PURPLE_ACTION_PICKUP_TEAL":
             // STATES
             state['INV_BLOCK_TEAL'] = true;
-            state['PURPLE_PEDISTAL'] = "none";
+            state['PURPLE_PEDESTAL'] = "none";
             
             color = 'PURPLE';
-            desc = "You pick up the TEAL block from the pedistal and place it in your bag of holding. Which for right now is just your hands and arms.";
+            desc = "You pick up the TEAL block from the pedestal and place it in your bag of holding. Which for right now is just your hands and arms.";
             actions = [ "Re-observe the room."];
             hrefs = [ "PURPLE_DEFAULT" ];
             break;
             
         case "PURPLE_ACTION_PLACE_OTHER":
             color = "PURPLE";
-            desc = "You place the block on the pedistal. Despite the block being perfectly square and the same size as all the rest of the blocks, you still can't place it into the pedistal. Clearly this pedistal takes color into account of physical space... somehow.";
+            desc = "You place the block on the pedestal. Despite the block being perfectly square and the same size as all the rest of the blocks, you still can't place it into the pedestal. Clearly this pedestal takes color into account of physical space... somehow.";
             actions = [ "Re-observe the room."];
             hrefs = [ "PURPLE_DEFAULT" ];
             break;
@@ -442,10 +442,10 @@ function roomEval( targetRoom ) {
         case "PURPLE_ACTION_PLACE_PURPLE":
             //Actions
             state['INV_BLOCK_PURPLE'] = false;
-            state['PURPLE_PEDISTAL'] = "PURPLE";
+            state['PURPLE_PEDESTAL'] = "PURPLE";
             
             color = "PURPLE";
-            desc = "You place the block on the pedistal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
+            desc = "You place the block on the pedestal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
             actions = [ "Re-observe the room."];
             hrefs = [ "PURPLE_DEFAULT" ];
             break;
@@ -461,9 +461,9 @@ function roomEval( targetRoom ) {
             
             color = 'GRAY'
             
-            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>GRAY</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedistal in the middle of the room. ";
+            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>GRAY</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedestal in the middle of the room. ";
             
-            actions = ["APPROCH the pedistal."];
+            actions = ["APPROCH the pedestal."];
             hrefs = ['GRAY_DEFAULT'];
             links = [];
             break;
@@ -475,32 +475,32 @@ function roomEval( targetRoom ) {
             hrefs = [];
             links = [];
             
-            switch( state['GRAY_PEDISTAL'].toUpperCase() ) {
+            switch( state['GRAY_PEDESTAL'].toUpperCase() ) {
                 case "GRAY":
-                    desc = desc + "You see a <b>GRAY</b> cube upon the pedistal. There's no reason to remove it.";
+                    desc = desc + "You see a <b>GRAY</b> cube upon the pedestal. There's no reason to remove it.";
                     break;
                 case "OLIVE":
-                    desc = desc + "You see a <b>OLIVE</b> cube upon the pedistal. It looks inviting enough to pick it up.";
+                    desc = desc + "You see a <b>OLIVE</b> cube upon the pedestal. It looks inviting enough to pick it up.";
                     actions.push("TAKE OLIVE BLOCK.");
                     hrefs.push("GRAY_ACTION_PICKUP_OLIVE");
                     break;
                 default:
                     // Blocks that can be placed.
-                    desc = desc + "You see an empty pedistal, waiting for a block to be placed inside of it.";
+                    desc = desc + "You see an empty pedestal, waiting for a block to be placed inside of it.";
                     if ( state['INV_BLOCK_TEAL'] ) {
-                        actions.push("PLACE TEAL BLOCK on PEDISTAL.");
+                        actions.push("PLACE TEAL BLOCK on PEDESTAL.");
                         hrefs.push("GRAY_ACTION_PLACE_OTHER");
                     }
                     if ( state['INV_BLOCK_PURPLE'] ) {
-                        actions.push("PLACE PURPLE BLOCK on PEDISTAL.");
+                        actions.push("PLACE PURPLE BLOCK on PEDESTAL.");
                         hrefs.push("GRAY_ACTION_PLACE_OTHER");
                     }
                     if ( state['INV_BLOCK_OLIVE'] ) {
-                        actions.push("PLACE OLIVE BLOCK on PEDISTAL.");
+                        actions.push("PLACE OLIVE BLOCK on PEDESTAL.");
                         hrefs.push("GRAY_ACTION_PLACE_OTHER");
                     }
                     if ( state['INV_BLOCK_GRAY'] ) {
-                        actions.push("PLACE GRAY BLOCK on PEDISTAL.");
+                        actions.push("PLACE GRAY BLOCK on PEDESTAL.");
                         hrefs.push("GRAY_ACTION_PLACE_GRAY");
                     }
                     
@@ -515,17 +515,17 @@ function roomEval( targetRoom ) {
         case "GRAY_ACTION_PICKUP_OLIVE":
             // STATES
             state['INV_BLOCK_OLIVE'] = true;
-            state['GRAY_PEDISTAL'] = "none";
+            state['GRAY_PEDESTAL'] = "none";
             
             color = 'GRAY';
-            desc = "You pick up the OLIVE block from the pedistal and place it in your bag of holding. Which for right now is just your hands and arms.";
+            desc = "You pick up the OLIVE block from the pedestal and place it in your bag of holding. Which for right now is just your hands and arms.";
             actions = [ "Re-observe the room."];
             hrefs = [ "GRAY_DEFAULT" ];
             break;
             
         case "GRAY_ACTION_PLACE_OTHER":
             color = "GRAY";
-            desc = "You place the block on the pedistal. Despite the block being perfectly square and the same size as all the rest of the blocks, you still can't place it into the pedistal. Clearly this pedistal takes color into account of physical space... somehow.";
+            desc = "You place the block on the pedestal. Despite the block being perfectly square and the same size as all the rest of the blocks, you still can't place it into the pedestal. Clearly this pedestal takes color into account of physical space... somehow.";
             actions = [ "Re-observe the room."];
             hrefs = [ "GRAY_DEFAULT" ];
             break;
@@ -533,10 +533,10 @@ function roomEval( targetRoom ) {
         case "GRAY_ACTION_PLACE_GRAY":
             //Actions
             state['INV_BLOCK_GRAY'] = false;
-            state['GRAY_PEDISTAL'] = "GRAY";
+            state['GRAY_PEDESTAL'] = "GRAY";
             
             color = "GRAY";
-            desc = "You place the block on the pedistal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
+            desc = "You place the block on the pedestal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
             actions = [ "Re-observe the room."];
             hrefs = [ "GRAY_DEFAULT" ];
             break;
@@ -552,9 +552,9 @@ function roomEval( targetRoom ) {
             
             color = 'OLIVE'
             
-            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>OLIVE</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedistal in the middle of the room. ";
+            desc = "As soon as you touch the outlined space, the light and walls change to the color of <b>OLIVE</b>. The outline of the door also changes to a solid white.<br/><br/>In the middle of the room, you see a pedestal in the middle of the room. ";
             
-            actions = ["APPROCH the pedistal."];
+            actions = ["APPROCH the pedestal."];
             hrefs = ['OLIVE_DEFAULT'];
             links = [];
             break;
@@ -566,32 +566,32 @@ function roomEval( targetRoom ) {
             hrefs = [];
             links = [];
             
-            switch( state['OLIVE_PEDISTAL'].toUpperCase() ) {
+            switch( state['OLIVE_PEDESTAL'].toUpperCase() ) {
                 case "OLIVE":
-                    desc = desc + "You see a <b>OLIVE</b> cube upon the pedistal. There's no reason to remove it.";
+                    desc = desc + "You see a <b>OLIVE</b> cube upon the pedestal. There's no reason to remove it.";
                     break;
                 case "GRAY":
-                    desc = desc + "You see a <b>GRAY</b> cube upon the pedistal. It looks inviting enough to pick it up.";
+                    desc = desc + "You see a <b>GRAY</b> cube upon the pedestal. It looks inviting enough to pick it up.";
                     actions.push("TAKE GRAY BLOCK.");
                     hrefs.push("OLIVE_ACTION_PICKUP_GRAY");
                     break;
                 default:
                     // Blocks that can be placed.
-                    desc = desc + "You see an empty pedistal, waiting for a block to be placed inside of it.";
+                    desc = desc + "You see an empty pedestal, waiting for a block to be placed inside of it.";
                     if ( state['INV_BLOCK_TEAL'] ) {
-                        actions.push("PLACE TEAL BLOCK on PEDISTAL.");
+                        actions.push("PLACE TEAL BLOCK on PEDESTAL.");
                         hrefs.push("OLIVE_ACTION_PLACE_OTHER");
                     }
                     if ( state['INV_BLOCK_PURPLE'] ) {
-                        actions.push("PLACE PURPLE BLOCK on PEDISTAL.");
+                        actions.push("PLACE PURPLE BLOCK on PEDESTAL.");
                         hrefs.push("OLIVE_ACTION_PLACE_OTHER");
                     }
                     if ( state['INV_BLOCK_OLIVE'] ) {
-                        actions.push("PLACE OLIVE BLOCK on PEDISTAL.");
+                        actions.push("PLACE OLIVE BLOCK on PEDESTAL.");
                         hrefs.push("OLIVE_ACTION_PLACE_OLIVE");
                     }
                     if ( state['INV_BLOCK_GRAY'] ) {
-                        actions.push("PLACE GRAY BLOCK on PEDISTAL.");
+                        actions.push("PLACE GRAY BLOCK on PEDESTAL.");
                         hrefs.push("OLIVE_ACTION_PLACE_OTHER");
                     }
                     
@@ -606,17 +606,17 @@ function roomEval( targetRoom ) {
         case "OLIVE_ACTION_PICKUP_GRAY":
             // STATES
             state['INV_BLOCK_GRAY'] = true;
-            state['OLIVE_PEDISTAL'] = "none";
+            state['OLIVE_PEDESTAL'] = "none";
             
             color = 'OLIVE';
-            desc = "You pick up the GRAY block from the pedistal and place it in your bag of holding. Which for right now is just your hands and arms.";
+            desc = "You pick up the GRAY block from the pedestal and place it in your bag of holding. Which for right now is just your hands and arms.";
             actions = [ "Re-observe the room."];
             hrefs = [ "OLIVE_DEFAULT" ];
             break;
             
         case "OLIVE_ACTION_PLACE_OTHER":
             color = "OLIVE";
-            desc = "You place the block on the pedistal. Despite the block being perfectly square and the same size as all the rest of the blocks, you still can't place it into the pedistal. Clearly this pedistal takes color into account of physical space... somehow.";
+            desc = "You place the block on the pedestal. Despite the block being perfectly square and the same size as all the rest of the blocks, you still can't place it into the pedestal. Clearly this pedestal takes color into account of physical space... somehow.";
             actions = [ "Re-observe the room."];
             hrefs = [ "OLIVE_DEFAULT" ];
             break;
@@ -624,10 +624,10 @@ function roomEval( targetRoom ) {
         case "OLIVE_ACTION_PLACE_OLIVE":
             //Actions
             state['INV_BLOCK_OLIVE'] = false;
-            state['OLIVE_PEDISTAL'] = "OLIVE";
+            state['OLIVE_PEDESTAL'] = "OLIVE";
             
             color = "OLIVE";
-            desc = "You place the block on the pedistal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
+            desc = "You place the block on the pedestal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
             actions = [ "Re-observe the room."];
             hrefs = [ "OLIVE_DEFAULT" ];
             break;
@@ -688,7 +688,7 @@ function WhiteRoom_DoorApproch( TargetDoorColor ) {
     var links;
 
     // If The room is clear, show that process.
-    if ( state[ TargetDoorColor.toUpperCase()+'_PEDISTAL' ] == TargetDoorColor.toUpperCase() ) {
+    if ( state[ TargetDoorColor.toUpperCase()+'_PEDESTAL' ] == TargetDoorColor.toUpperCase() ) {
         // Room is cleared. Show the 'locked' state.
         desc = "You walk to the wall to what was a "+TargetDoorColor.toUpperCase()+" color outline, but is now simply RED.<br/><br/>There is a slightly louder hum of in rhythm eminiating from the door.";
         // Actions are the same acorss.
@@ -733,22 +733,22 @@ function WHITE_MIDDLE_DEFAULT() {
     // Check and returns which doors are active.
     desc = "You are in the center of the room with four outlines of doors around the room.<br/><br/>";
     
-    if ( state[ 'TEAL_PEDISTAL' ].toUpperCase() == "TEAL" ) {
+    if ( state[ 'TEAL_PEDESTAL' ].toUpperCase() == "TEAL" ) {
         desc = desc + "To the <b>WEST</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>WEST</b>, you see a <b>TEAL</b> outline of a door.<br/>";
     }
-    if ( state[ 'PURPLE_PEDISTAL' ].toUpperCase() == "PURPLE" ) {
+    if ( state[ 'PURPLE_PEDESTAL' ].toUpperCase() == "PURPLE" ) {
         desc = desc + "To the <b>EAST</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>EAST</b>, you see a <b>PURPLE</b> outline of a door.<br/>";
     }
-    if ( state[ 'OLIVE_PEDISTAL' ].toUpperCase() == "OLIVE" ) {
+    if ( state[ 'OLIVE_PEDESTAL' ].toUpperCase() == "OLIVE" ) {
         desc = desc + "To the <b>SOUTH</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>SOUTH</b>, you see a <b>OLIVE</b> outline of a door.<br/>";
     }
-    if ( state[ 'GRAY_PEDISTAL' ].toUpperCase() == "GRAY" ) {
+    if ( state[ 'GRAY_PEDESTAL' ].toUpperCase() == "GRAY" ) {
         desc = desc + "To the <b>NORTH</b>, you see a <b>RED</b> outline of a door.<br/>";
     } else {
         desc = desc + "To the <b>NORTH</b>, you see a <b>GRAY</b> outline of a door.<br/>";
@@ -759,10 +759,10 @@ function WHITE_MIDDLE_DEFAULT() {
 
 function RedRoomCheck() {
     if (
-        state['TEAL_PEDISTAL'].toUpperCase() == 'TEAL' &&
-        state['PURPLE_PEDISTAL'].toUpperCase() == 'PURPLE' &&
-        state['OLIVE_PEDISTAL'].toUpperCase() == 'OLIVE' &&
-        state['GRAY_PEDISTAL'].toUpperCase() == 'GRAY'
+        state['TEAL_PEDESTAL'].toUpperCase() == 'TEAL' &&
+        state['PURPLE_PEDESTAL'].toUpperCase() == 'PURPLE' &&
+        state['OLIVE_PEDESTAL'].toUpperCase() == 'OLIVE' &&
+        state['GRAY_PEDESTAL'].toUpperCase() == 'GRAY'
     ) {
         return true;
     } else {
