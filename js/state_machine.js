@@ -5,8 +5,8 @@
     
     Produced for Global Game Jam 2013 in San Francisco.
 */
-
-var state = {
+var state;
+var init_state = {
     'WHITE_000_002_yelled':0,
     'WHITE_ANY_DOOR_VISITED':false,
     
@@ -28,6 +28,11 @@ var state = {
     'INV_BLOCK_GRAY':false,
     
 };
+
+function init() {
+    state = init_state;
+    changeRoom( "WHITE_000_000" );
+}
 
 function getState() {
     console.log( state );

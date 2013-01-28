@@ -24,6 +24,9 @@ function changeRoom( targetRoomStr ) {
     if ( targetRoomData[1] == undefined || targetRoomData[1] == "" ) {
         console.error( "\tNo valid return provided.");
         return false;
+    } else if ( targetRoomData[1] == "FUNCTION" ) {
+        // Running a function instead!
+        return false;
     }
     
     // Change the room color

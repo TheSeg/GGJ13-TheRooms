@@ -115,11 +115,18 @@ function roomEval( targetRoom ) {
                 "PLAY The Stanley Parable",
             ];
             hrefs = [
-                null,
+                "PLAY_STANLEY",
             ];
             links = [
-                "http://www.galactic-cafe.com/the-stanley-parable/",
+                null,
             ];
+            break;
+            
+        case "PLAY_STANLEY":
+            color = 'FUNCTION';
+            desc = 'FUNCTION';
+            init();
+            window.open( "http://www.galactic-cafe.com/the-stanley-parable/", "_blank" );
             break;
             
         case "WHITE_001_002":
@@ -349,7 +356,7 @@ function roomEval( targetRoom ) {
             state['TEAL_PEDISTAL'] = "TEAL";
             
             color = "teal";
-            desc = "You place the block on the pedistal. It fists perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
+            desc = "You place the block on the pedistal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
             actions = [ "Re-observe the room."];
             hrefs = [ "TEAL_DEFAULT" ];
             break;
@@ -438,7 +445,7 @@ function roomEval( targetRoom ) {
             state['PURPLE_PEDISTAL'] = "PURPLE";
             
             color = "PURPLE";
-            desc = "You place the block on the pedistal. It fists perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
+            desc = "You place the block on the pedistal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
             actions = [ "Re-observe the room."];
             hrefs = [ "PURPLE_DEFAULT" ];
             break;
@@ -529,7 +536,7 @@ function roomEval( targetRoom ) {
             state['GRAY_PEDISTAL'] = "GRAY";
             
             color = "GRAY";
-            desc = "You place the block on the pedistal. It fists perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
+            desc = "You place the block on the pedistal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
             actions = [ "Re-observe the room."];
             hrefs = [ "GRAY_DEFAULT" ];
             break;
@@ -620,7 +627,7 @@ function roomEval( targetRoom ) {
             state['OLIVE_PEDISTAL'] = "OLIVE";
             
             color = "OLIVE";
-            desc = "You place the block on the pedistal. It fists perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
+            desc = "You place the block on the pedistal. It fits perfectly!<br/><br/> A rythmic beating is heard for a few moments, then the moment passes.";
             actions = [ "Re-observe the room."];
             hrefs = [ "OLIVE_DEFAULT" ];
             break;
